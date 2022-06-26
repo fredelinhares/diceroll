@@ -43,4 +43,8 @@ dependencies {
     // NAVIGATION
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+
+    // Koin main features for Android: version 3.2.0 -> No more koin-android-viewmodel, koin-android-scope, koin-android-fragment
+    var koin_version = '3.2.0'
+    implementation "io.insert-koin:koin-android:$koin_version"
 }
