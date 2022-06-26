@@ -8,9 +8,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlin.random.Random
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainFragment : Fragment() {
+
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
