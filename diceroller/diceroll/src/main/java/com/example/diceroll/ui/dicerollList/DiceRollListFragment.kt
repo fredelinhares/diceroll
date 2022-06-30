@@ -15,7 +15,7 @@ class DiceRollListFragment : Fragment() {
     private var _binding: DicerollListFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModel<DiceRollListViewModel>()
+    private val viewModel: DiceRollListViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DicerollListFragmentBinding.inflate(inflater, container, false)
@@ -26,6 +26,7 @@ class DiceRollListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupDiceRollList()
         setupObservers()
+        getData()
     }
 
     private fun setupDiceRollList() {
@@ -36,15 +37,16 @@ class DiceRollListFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.viewState.observe(viewLifecycleOwner, {
+        viewModel.viewState.observe(viewLifecycleOwner) {
             handleViewState(it)
-        })
+        }
     }
 
     private fun handleViewState(viewState: DiceRollViewState) {
         when (viewState) {
             is DiceRollViewState.Loading -> ""
             is DiceRollViewState.Done -> {
+                binding.moveNumberTextview.text = "TESTE TITLE"
                 getDiceRollListAdapter().submitList(viewState.diceRollItemViewList)
             }
             is DiceRollViewState.Error -> ""
@@ -53,6 +55,8 @@ class DiceRollListFragment : Fragment() {
     }
 
     private fun getDiceRollListAdapter() = binding.dicerollRecyclerview.adapter as DiceRollListAdapter
+
+    private fun getData() = viewModel.fillDiceRollList()
 
     override fun onDestroyView() {
         super.onDestroyView()
