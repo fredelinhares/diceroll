@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.diceroll.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_diceRollListFragment"
             app:destination="@id/diceRollListFragment" />
@@ -17,5 +17,17 @@
     <fragment
         android:id="@+id/diceRollListFragment"
         android:name="com.example.diceroll.ui.dicerollList.DiceRollListFragment"
-        android:label="DiceRollListFragment" />
+        android:label="DiceRollListFragment">
+        <action
+            android:id="@+id/action_diceRollListFragment_to_diceRollDetailFragment"
+            app:destination="@id/diceRollDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diceRollDetailFragment"
+        android:name="com.example.diceroll.ui.dicerollDetail.DiceRollDetailFragment"
+        android:label="DiceRollDetailFragment">
+        <argument
+            android:name="diceRollItemView"
+            app:argType="com.example.diceroll.model.DiceRollItemView" />
+    </fragment>
 </navigation>
