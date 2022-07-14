@@ -9,14 +9,19 @@ import com.example.diceroll.extensions.layoutInflater
 import com.example.diceroll.model.DiceRollItemView
 
 
-class DiceRollListAdapter : ListAdapter<DiceRollItemView, DiceRollListAdapter.DiceRollViewHolder>(DIFF_CALLBACK) {
+class DiceRollListAdapter(private val onItemClicked: (DiceRollItemView) -> Unit) :
+    ListAdapter<DiceRollItemView, DiceRollListAdapter.DiceRollViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiceRollViewHolder {
         val view = DicerollListItemBinding.inflate(parent.context.layoutInflater, parent, false)
         return DiceRollViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DiceRollViewHolder, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: DiceRollViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+        holder.itemView.setOnClickListener { onItemClicked(item) }
+    }
 
     inner class DiceRollViewHolder(private val binding: DicerollListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
