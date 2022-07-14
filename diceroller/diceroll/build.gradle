@@ -1,6 +1,12 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+
+    // To generate Java language code suitable for Java or mixed Java and Kotlin modules, add this line to your app or module's build.gradle file
+    id 'androidx.navigation.safeargs'
+
+    // To include support for Parcelable, add the following Gradle plugin to your app's build.gradle
+    id 'kotlin-parcelize'
 }
 
 android {
