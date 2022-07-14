@@ -1,0 +1,34 @@
+package com.example.diceroll.ui.dicerollDetail
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.example.diceroll.databinding.DicerollDetailFragmentBinding
+import com.example.diceroll.model.DiceRollItemView
+
+class DiceRollDetailFragment : Fragment() {
+
+    private lateinit var binding: DicerollDetailFragmentBinding
+    private val args: DiceRollDetailFragmentArgs by navArgs()
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = DicerollDetailFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupView(args.diceRollItemView)
+    }
+
+    private fun setupView(diceRollItemView: DiceRollItemView) {
+        with(binding) {
+            detailDiceValueTextview.text = diceRollItemView.diceValue.toString()
+            detailMoveNumberTextview.text = diceRollItemView.moveNumber.toString()
+        }
+    }
+
+}
