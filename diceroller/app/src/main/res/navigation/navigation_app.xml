@@ -4,5 +4,5 @@
     android:id="@+id/navigation_app"
     app:startDestination="@id/navigation_diceroll">
 
-    <include app:graph="@navigation/navigation_diceroll" />
+    <include app:graph="@navigation/diceroll_graph" />
 </navigation>
