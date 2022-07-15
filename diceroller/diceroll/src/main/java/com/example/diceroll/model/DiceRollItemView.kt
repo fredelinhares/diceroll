@@ -1,3 +1,7 @@
 package com.example.diceroll.model
 
-data class DiceRollItemView(val moveNumber: Int, val diceValue: Int)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class DiceRollItemView(val moveNumber: Int, val diceValue: Int): Parcelable

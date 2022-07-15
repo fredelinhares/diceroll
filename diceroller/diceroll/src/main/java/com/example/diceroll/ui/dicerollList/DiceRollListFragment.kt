@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diceroll.databinding.DicerollListFragmentBinding
+import com.example.diceroll.model.DiceRollItemView
 import com.example.diceroll.model.DiceRollViewState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,8 +34,16 @@ class DiceRollListFragment : Fragment() {
     private fun setupDiceRollList() {
         with(binding.dicerollRecyclerview) {
             layoutManager = LinearLayoutManager(context)
-            adapter = DiceRollListAdapter()
+            adapter = DiceRollListAdapter(::onChoseDiceRollItem)
         }
+    }
+
+    private fun onChoseDiceRollItem(diceRollItemView: DiceRollItemView) {
+        findNavController().navigate(
+            DiceRollListFragmentDirections.actionDiceRollListFragmentToDiceRollDetailFragment(
+                diceRollItemView
+            )
+        )
     }
 
     private fun setupObservers() {
